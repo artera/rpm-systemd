@@ -1,0 +1,26 @@
+From c2f15d150d208b9435ee6218fdaef7a75d17475f Mon Sep 17 00:00:00 2001
+From: Massimiliano Torromeo <massimiliano.torromeo@gmail.com>
+Date: Mon, 24 Aug 2020 19:51:58 +0200
+Subject: [PATCH] Remove libmount version check from meson.build
+
+---
+ meson.build | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 70811c2..65b162e 100644
+--- a/meson.build
++++ b/meson.build
+@@ -801,8 +801,7 @@ if not libcap.found()
+         libcap = cc.find_library('cap')
+ endif
+ 
+-libmount = dependency('mount',
+-                      version : fuzzer_build ? '>= 0' : '>= 2.30')
++libmount = dependency('mount')
+ 
+ want_seccomp = get_option('seccomp')
+ if want_seccomp != 'false' and not fuzzer_build
+-- 
+2.28.0
+
