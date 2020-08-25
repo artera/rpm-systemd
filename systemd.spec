@@ -427,6 +427,7 @@ Patch0365: 0365-udev-rules-make-tape-changers-also-apprear-in-dev-ta.patch
 Patch0366: 0366-nspawn-move-payload-to-sub-cgroup-first-then-sync-cg.patch
 Patch0367: 0367-nspawn-chown-the-legacy-hierarchy-when-it-s-used-in-.patch
 Patch0368: 0368-meson-remove-mount-version-check.patch
+Patch0369: 0369-Skip-tests-that-do-not-work-well-with-containers-cop.patch
 
 
 %ifarch %{ix86} x86_64 aarch64
