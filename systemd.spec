@@ -562,6 +562,14 @@ Requires:       %{name}-pam = %{version}-%{release}
 Development headers and auxiliary files for developing applications linking
 to libudev or libsystemd.
 
+%package sysv
+Summary:        SysV tools for systemd
+License:        LGPLv2+
+Requires:       %{name} = %{version}-%{release}
+
+%description sysv
+SysV compatibility tools for systemd
+
 %package udev
 Summary: Rule-based device node and kernel event manager
 Requires:       %{name}%{?_isa} = %{version}-%{release}
