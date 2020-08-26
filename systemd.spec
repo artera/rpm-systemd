@@ -43,6 +43,9 @@ Source3:        purge-nobody-user.sh
 # Prevent accidental removal of the systemd package
 Source4:        yum-protect-systemd.conf
 
+# SysV convert script.
+Source5:        systemd-sysv-convert.py
+
 Source6:        sysctl.conf.README
 Source7:        systemd-journal-remote.xml
 Source8:        systemd-journal-gatewayd.xml
@@ -709,6 +712,9 @@ export LC_ALL=en_US.UTF-8
 mkdir -p %{buildroot}/%{_sbindir}
 ln -sf ../bin/udevadm %{buildroot}%{_sbindir}/udevadm
 
+# Install SysV conversion tool for systemd
+install -m 0755 %{SOURCE5} %{buildroot}%{_bindir}/systemd-sysv-convert
+
 # Compatiblity and documentation files
 touch %{buildroot}/etc/crypttab
 chmod 600 %{buildroot}/etc/crypttab
@@ -1037,6 +1043,9 @@ fi
 %files pam -f .file-list-pam
 
 %files devel -f .file-list-devel
+
+%files sysv
+%{_bindir}/systemd-sysv-convert
 
 %files udev -f .file-list-udev
 
