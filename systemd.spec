@@ -839,13 +839,10 @@ python3 %{SOURCE2} %buildroot <<EOF
 %ghost %dir /var/log/private
 EOF
 
-# Disabling test since I verified that the only 4 failing tests are only related to building in a container and to meson itself
-# %check
-# %meson_test
-
 #############################################################################################
 
-%include %{SOURCE1}
+# File triggers are not supported by the rpm version includes in EL7
+# %include %{SOURCE1}
 
 %pre
 getent group cdrom &>/dev/null || groupadd -r -g 11 cdrom &>/dev/null || :
