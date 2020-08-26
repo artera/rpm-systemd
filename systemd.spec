@@ -23,7 +23,7 @@
 Name:           systemd
 Url:            http://www.freedesktop.org/wiki/Software/systemd
 Version:        239
-Release:        31%{?dist}.3
+Release:        31%{?dist}.4
 # For a breakdown of the licensing, see README
 License:        LGPLv2+ and MIT and GPLv2+
 Summary:        System and Service Manager
@@ -43,7 +43,6 @@ Source3:        purge-nobody-user.sh
 # Prevent accidental removal of the systemd package
 Source4:        yum-protect-systemd.conf
 
-Source5:        inittab.conf
 Source6:        sysctl.conf.README
 Source7:        systemd-journal-remote.xml
 Source8:        systemd-journal-gatewayd.xml
@@ -714,9 +713,6 @@ ln -sf ../bin/udevadm %{buildroot}%{_sbindir}/udevadm
 touch %{buildroot}/etc/crypttab
 chmod 600 %{buildroot}/etc/crypttab
 
-# /etc/initab
-install -Dm0644 %{SOURCE5} %{buildroot}/etc/inittab
-
 # /etc/sysctl.conf compat
 install -Dm0644 %{SOURCE6} %{buildroot}/etc/sysctl.conf
 ln -s ../sysctl.conf %{buildroot}/etc/sysctl.d/99-sysctl.conf
@@ -807,7 +803,6 @@ rm -f %{buildroot}%{_prefix}/lib/systemd/system/local-fs.target.wants/tmp.mount
 python3 %{SOURCE2} %buildroot <<EOF
 %ghost %config(noreplace) /etc/crypttab
 %ghost /etc/udev/hwdb.bin
-/etc/inittab
 /etc/yum/protected.d/systemd.conf
 /usr/lib/systemd/purge-nobody-user
 %ghost %config(noreplace) /etc/vconsole.conf
